@@ -18,15 +18,29 @@ main {
 
 }
 
-div{
+main.carousel {
   display:block;
 }
 
-carousel-item{
+div{
+  display:block;
+}
+.carousel-item-next, .carousel-item-prev, .carousel-item-active{
+  display:block;
+}
+
+.carousel-item{
+  height: 32rem;
+}
+
+.carousel-item{
   position:relative;
   display:none;
   float: left;
   width:100%;
   margin-right:100%;
   transition: transform .6s ease-in-out;
+  transition-duration: .6s;
+  transition-timing-function: ease-in-out;
+  transition-property: transform;
 }
