@@ -33,12 +33,20 @@ div{
   height: 32rem;
 }
 
-div.linkdisplay {
+.link-display {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 100%;
+  width: 80%;
   height: 100%;
   gap: 10px;
+  padding-left: 20%;
+}
+
+.web{
+  display:block;
+  position:absolute;
+  top:27%;
+  left:40%;
 }
 
 .carousel-item{
@@ -51,4 +59,20 @@ div.linkdisplay {
   transition-duration: .6s;
   transition-timing-function: ease-in-out;
   transition-property: transform;
+}
+
+.presentation {
+  display:flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px 5px; 
+  border: thick solid gray;
+  height:40vw;
+  width:71vw;
+  overflow:hidden;
+}
+
+.video {
+  display: flex;
+  height:40vw;
+  width: 71vw;
 }
