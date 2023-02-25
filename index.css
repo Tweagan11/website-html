@@ -69,10 +69,5 @@ div{
   height:40vw;
   width:71vw;
   overflow:hidden;
-}
-
-.video {
-  display: flex;
-  height:40vw;
-  width: 71vw;
+  align-items: stretch;
 }
