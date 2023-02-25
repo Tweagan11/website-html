@@ -20,7 +20,7 @@
     <header class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
-          <img src="TreehousePNG.png" width="30" height="30" class="d-inline">
+          <img src="TreehousePNG-transformed.png" width="45" height="45" class="d-inline">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -29,33 +29,23 @@
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="#">About Us</a>
             <a class="nav-item nav-link" href="Presentations.html">Presentations</a>
-            <a class="nav-item nav-link" href="#">Merchandise</a>
-            <a class="nav-item nav-link" href="#">Events</a>
+            <a class="nav-item nav-link disabled" href="#">Merchandise</a>
+            <a class="nav-item nav-link" href="events.html">Events</a>
           </div>
         </div>
       </nav>
     </header>
 
-    <main class="bg-light text-dark container-fluid">
-      <div class="center">
+    <main class="bg-light text-center container-fluid">
+      <div class="containter col-xl-10 col-xxl-8 px-4 py-5">
         <section>
-          <h2>About me!</h2>
-          <p>
-            My name is <b>Teagan Smith</b>, and everything changed when the fire nation attacked.
-            Although I have much to learn, I believe that I can (maybe) change the world.
-          </p>
-        </section>
-        <section>
-          <img src="TreehousePNG.png" alt="Treehouse Logo" />
-          <h2>Treehouse Talks</h2>
-          <p>
+          <h1 class="display-4 fw-bold lh-1 mb-3">Treehouse Talks</h2>
+            <p class="lead col-mb-10 mx-auto">
             Treehouse is a community driven experience focused on giving the community a platform to speak.
             We feature a variety of topics, such as entreprenuerism, failure, travel, mental health, pride, etc.
             We focus mainly on providing a safe space for everyone to come and learn new ideas, become more aware,
             and connect with peers. Want to get involved? Contact us!
-          </p>
-          <button type="button" onclick="alert('This will redirect to a page or a form eventually')"> Contact us! </button>
-          <br>
+            </p>
         </section>
         <section>
           <h2>Simon project</h2>
@@ -86,6 +76,35 @@
           </ul>
         </section>
       </div>
+      <div class="b-example-divider"></div>
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+          <div class="row align-items-center g-lg-5 py-5">
+            <div class="col-lg-7 text-center text-lg-start">
+              <h1 class="display-4 fw-bold lh-1 mb-3">Sign up with Treehouse</h1>
+              <p class="col-lg-10 fs-4">By signing up, you stay in touch with events, deals, and upcoming speakers for each event.</p>
+            </div>
+            <div class="col-md-10 mx-auto col-lg-5">
+              <form class="p-4 p-md-5 border rounded-3 bg-light">
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <label for="floatingPassword">Password</label>
+                </div>
+                <div class="checkbox mb-3">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+                <hr class="my-4">
+                <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+              </form>
+            </div>
+          </div>
+        </div>
     </main>
   </body>
 </html>

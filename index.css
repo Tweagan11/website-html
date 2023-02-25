@@ -2,3 +2,31 @@
   font-family: Arial, Helvetica, sans-serif;
   box-sizing: border-box;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 375px;
+}
+
+main {
+  flex: 1 calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+div{
+  display:block;
+}
+
+carousel-item{
+  position:relative;
+  display:none;
+  float: left;
+  width:100%;
+  margin-right:100%;
+  transition: transform .6s ease-in-out;
+}
