@@ -22,9 +22,32 @@ main.carousel {
   display:block;
 }
 
-div{
-  display:block;
+.container2{
+  display:flex;
+  border: thick solid black;
+  border-color:black;
+  min-width:800px;
+  flex-direction:row;
+  flex-wrap:wrap;
+  align-items: center;
+  justify-content: space-evenly;
 }
+
+.simontext {
+  width:45%;
+}
+
+.container3{
+  display:flex;
+  flex-direction:column;
+  /* padding:40px; */
+  gap:30px;
+  flex-wrap:wrap;
+  column-gap: 40px;
+  border: thin dashed black;
+
+}
+
 .carousel-item-next, .carousel-item-prev, .carousel-item-active{
   display:block;
 }
@@ -34,19 +57,18 @@ div{
 }
 
 .link-display {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 80%;
-  height: 100%;
+  display: flex;
   gap: 10px;
-  padding-left: 20%;
+  border: thick dashed black;
+  align-items:center;
 }
 
 .web{
-  display:block;
-  position:absolute;
-  top:27%;
-  left:40%;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  flex-wrap:wrap;
+  width:45%;
 }
 
 .carousel-item{
@@ -70,4 +92,16 @@ div{
   width:71vw;
   overflow:hidden;
   align-items: stretch;
+}
+
+@media (max-height: 600px) {
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+  main {
+    flex: 1 100vh;
+  }
 }
