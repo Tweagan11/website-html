@@ -12,14 +12,23 @@ const loginErrorMsg = document.getElementById("login-error-msg");
 
 loginButton.addEventListener("click", (e) => {
     e.preventDefault();
+    
     const username = loginForm.username.value;
     const password = loginForm.password.value;
 
-    if (username === "user" && password === "web_dev") {
-        alert("You have successfully logged in.");
-        location.reload();
-    } else {
-        loginErrorMsg.style.opacity = 1;
+    let users = [];
+    const usersText = localStorage.getItem('users');
+    if (usersText) {
+        users = JSON.parse(usersText);
+    }
+
+    for(i = 0; i < users.length; i++) {
+        if (username === users.username && password === users.password) {
+            alert("You have successfully logged in.");
+            location.reload();
+        } else {
+            loginErrorMsg.style.opacity = 1;
+        }
     }
 })
 
@@ -28,13 +37,31 @@ const signupButton = document.getElementById("signup-form-submit");
 
 signupButton.addEventListener("click", (e) => {
     e.preventDefault();
+
     const username = signupForm.newUsername.value;
     const password = signupForm.newPassword.value;
+    const newUser = new User (username, password);
 
-    fetch(users.json)
-    
+    let users = [];
+    const usersText = localStorage.getItem('users');
+    if (usersText) {
+        users = JSON.parse(usersText);
+    }
 
+    let found = false;
 
+    for (i = 0 ; i < users.length; i++) {
+        if (username === users.username) {
+            loginErrorMsg.style.opacity = 1;
+            loginErrorMsg.innerHTML = '<p>Already a User</p>';
+            found = true;
+            break;
+            }
+        }
 
-
+    if (!found) {
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        location.reload();
+    }
 })
