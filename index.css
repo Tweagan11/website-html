@@ -24,11 +24,9 @@ main.carousel {
 
 .container2{
   display:flex;
-  border: thick solid black;
-  border-color:black;
   min-width:800px;
   flex-direction:row;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
 }
@@ -40,12 +38,15 @@ main.carousel {
 .container3{
   display:flex;
   flex-direction:column;
-  /* padding:40px; */
-  gap:30px;
+  padding:40px;
   flex-wrap:wrap;
   column-gap: 40px;
-  border: thin dashed black;
+  align-items: center;
 
+}
+
+.top {
+  max-width:1000px;
 }
 
 .carousel-item-next, .carousel-item-prev, .carousel-item-active{
@@ -59,7 +60,6 @@ main.carousel {
 .link-display {
   display: flex;
   gap: 10px;
-  border: thick dashed black;
   align-items:center;
 }
 
@@ -103,5 +103,20 @@ main.carousel {
   }
   main {
     flex: 1 100vh;
+  }
+}
+
+@media (max-width: 800px) {
+  .container2 {
+    flex-direction:column;
+  }
+  .container3 {
+    width: min-content;
+    height: max-content;
+    align-items: center;
+  }
+  .top {
+    width:50%;
+
   }
 }
