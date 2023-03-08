@@ -36,12 +36,16 @@ main.carousel {
 
 .container3{
   display:flex;
+  margin-left:30px;
+  margin-right:30px;
   flex-direction:column;
   padding:40px;
   flex-wrap:wrap;
   /* column-gap: 40px; */
   align-items: center;
   justify-content: space-evenly;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 2px grey;
 
 }
 
