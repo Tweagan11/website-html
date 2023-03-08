@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- This is a placeholder for when you start using CSS -->
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" href="TreehousePNG.png">
+    <title>Treehouse Talks</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body class="login-body bg-dark">
+
+    <header class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+          <img src="TreehousePNG-transformed.png" width="45" height="45" class="d-inline">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="index.html">About Us</a>
+            <a class="nav-item nav-link" href="Presentations.html">Presentations</a>
+            <a class="nav-item nav-link disabled" href="#">Merchandise</a>
+            <a class="nav-item nav-link" href="events.html">Events</a>
+            <a class="nav-item nav-link active" href="#">Login</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="login-container">
+        <div class="signLogBackground">
+
+            <div class="signup-header">
+                <h1>Sign Up Today!</h1>
+                <form id="signup-form">
+                    <input type="text" name="newUsername" id="new-username-field" class="signup-form-field" placeholder="Username">
+                    <input type="password" name="newPassword" id="new-password-field" class="signup-form-field" placeholder="Password">
+                    <input type="submit" value="Sign up" id="signup-form-submit">
+                </form>
+            </div>
+
+            <div class="login-header">
+                <h1>Already a member? Login below
+                </h1
+                >
+                <form id="login-form">
+                    <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+                    <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+                    <input type="submit" value="Login" id="login-form-submit">
+                </form>
+
+                <div id="login-error-msg-holder">
+                    <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script src="login.js"></script>
+
+    <footer class="bg-dark text-white">
+      <div class="container-fluid">
+          <span class="text-reset">Treehouse Talks</span>
+      </div>
+  </footer>
+  </body>
+</html>
