@@ -227,7 +227,9 @@ main.carousel {
   outline: none;
 }
 
-
+footer.a {
+  position: right;
+}
 
 
 
