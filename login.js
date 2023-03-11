@@ -6,7 +6,11 @@ class User {
         this.password = password;
         this.onlineStatus = false;
     }
+
+
 }
+
+const users = [];
 
 cleanUsers();
 
@@ -19,22 +23,29 @@ loginButton.addEventListener("click", (e) => {
     
     const username = loginForm.username.value;
     const password = loginForm.password.value;
-    const newUser = {username:username, password:password};
 
     let users = [];
-    const usersText = localStorage.getItem('users');
+    const usersText = localStorage.getItem('Users');
     if (usersText) {
         users = JSON.parse(usersText);
     };
 
     let test = users.find(User => User.username === username)
 
-    
     if (test) {
         alert("You have successfully logged in.");
+        for(let status of Object.keys(users)) {
+            if(typeof User[status] == false && test.username) {
+                test.onlineStatus = true;
+            };
+        }
         location.reload();
-    } else if ($("#login-form").value == null) {
+        cleanUsers();
+
+    } else if (username === "" || password === "") {
         loginErrorMsg.style.opacity = 1;
+            loginErrorMsg.innerHTML = '<p>Please enter a Username and Password</p>';
+            
     } else {
         loginErrorMsg.style.opacity = 1;
     }
@@ -53,10 +64,10 @@ signupButton.addEventListener("click", (e) => {
 
     const username = signupForm.newUsername.value;
     const password = signupForm.newPassword.value;
-    const newUser = new User (username, password);
+    const newUser = new User (username, password, onlineStatus = true);
 
     let users = [];
-    const usersText = localStorage.getItem('users');
+    const usersText = localStorage.getItem('Users');
     if (usersText) {
         users = JSON.parse(usersText);
     }
@@ -67,8 +78,10 @@ signupButton.addEventListener("click", (e) => {
 
     if (username === "" || password === ""){
 
-        alert("Please Enter a Username and Password");
+        loginErrorMsg.style.opacity = 1;
+            loginErrorMsg.innerHTML = '<p>Please enter a Username and Password</p>';
         location.reload;
+        found = true;
     }
 
     if (check) {
@@ -79,7 +92,8 @@ signupButton.addEventListener("click", (e) => {
 
     if(!found) {
         users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('Users', JSON.stringify(users));
+
         alert("You have successfully signed up!")
         window.location.href = 'index.html'
     }
@@ -88,12 +102,14 @@ signupButton.addEventListener("click", (e) => {
 function cleanUsers() {
     
     let users = [];
-    const usersText = localStorage.getItem('users');
+    const usersText = localStorage.getItem('Users');
     if (usersText) {
         users = JSON.parse(usersText);
     }
     updatedUsers=users.filter(elem => elem.username);
     updatedUsers=users.filter(elem => elem.password);
 
-    console.log(updatedUsers);
+    users = updatedUsers;
+
+    localStorage.setItem('Users', JSON.stringify(users));
 }

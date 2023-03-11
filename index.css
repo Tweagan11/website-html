@@ -227,8 +227,16 @@ main.carousel {
   outline: none;
 }
 
+#login-icon {
+  position: fixed;
+  right: 0;
+  margin-right: 10px;
+  
+}
+
 footer.a {
-  position: right;
+  position: fixed;
+  right:0;
 }
 
 
