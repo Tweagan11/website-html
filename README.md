@@ -12,3 +12,14 @@ div - division element
 const and let - var is complicated, let stays within function/scope. Const stays the same
 
 Promises - Resolve and reject are both end results/functions, can return a string or value depending on function. Can also be used to run code at similar times, async code (async and await can also be used)
+
+Lots of troubleshooting, but don't be afraid to stick with the code!
+
+DOM
+    -getElementByID
+    -setItem
+    -getItem
+    -querySelector
+    -innerHTML
+
+    JSON - Parse or Stringify, always one or the other!

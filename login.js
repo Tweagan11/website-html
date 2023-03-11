@@ -30,18 +30,19 @@ if(loginButton){
         };
 
         let test = users.find(User => User.username === username)
+        console.log(test)
 
-        if (test) {
+        if (username === "" || password === "") {
+            loginErrorMsg.style.opacity = 1;
+                loginErrorMsg.innerHTML = '<p>Please enter a Username and Password</p>';
+
+        } else if (test && test.password === password) {
             alert("You have successfully logged in.");
             localStorage.setItem("currentUser", JSON.stringify(username));
             const newCurrentUser = document.querySelector('#login-icon');
             newCurrentUser.textContent = username;
             location.reload();
             cleanUsers();
-
-        } else if (username === "" || password === "") {
-            loginErrorMsg.style.opacity = 1;
-                loginErrorMsg.innerHTML = '<p>Please enter a Username and Password</p>';
                 
         } else {
             loginErrorMsg.style.opacity = 1;
