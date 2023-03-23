@@ -1,0 +1,13 @@
+{
+  "name": "website-html",
+  "version": "1.0.0",
+  "description": "Basic HTML website to serve as the main view of your work in the course.",
+  "main": "main.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.32.0"
+  }
+}
