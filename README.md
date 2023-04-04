@@ -23,3 +23,6 @@ DOM
     -innerHTML
 
     JSON - Parse or Stringify, always one or the other!
+
+
+Lots of initializing and installing packages with npm and node.js! Express, mongodb and uuid are all pretty standard towards making a website. pm2 also helps with server management and daemons running in the backgroud
