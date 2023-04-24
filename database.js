@@ -13,27 +13,17 @@ if (!userName) {
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 
 const client = new MongoClient(url);
-const userCollection = client.db('simon').collection('user');
-const adminCollection = client.db('simon').collection('admin');
+const userCollection = client.db('tht').collection('user');
+const adminCollection = client.db('tht').collection('admin');
 
 function getUser(email) {
-    var user = adminCollection.findOne({ email: email });
-    if(user) {
-        return user;
-    } else {
-        user = userCollection.findOne({ email: email });
-        return user;
-    }
+    const user = userCollection.findOne({ email: email });
+    return user;
 }
   
 function getUserByToken(token) {
-    var user = adminCollection.findOne({ token: token});
-    if (user) {
-        return user;
-    } else {
-        user = userCollection.findOne({ token: token });
-        return user;
-    }
+    const user = userCollection.findOne({ token: token });
+    return user;
 } 
 
 async function createUser(email, password) {
@@ -42,9 +32,10 @@ async function createUser(email, password) {
     const user = {
       email: email,
       password: passwordHash,
-      authenticated: true,
+      online: true,
       token: uuid.v4(),
     };
+
     await userCollection.insertOne(user);
   
     return user;
@@ -56,7 +47,8 @@ async function createAdmin(email, password) {
     const admin = {
         email: email,
         password: passwordHash,
-        authenticated: true,
+        online: true,
+        admin: true,
         token: uuid.v4(),
     };
     await adminCollection.insertOne(admin);

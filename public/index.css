@@ -52,9 +52,6 @@ main.carousel {
   padding-bottom:80px;
 }
 
-.carousel-item-next, .carousel-item-prev, .carousel-item-active{
-}
-
 .carousel-item{
   height: 38rem;
 }

@@ -44,23 +44,23 @@
     <main class="login-container">
         <div class="signLogBackground">
 
-            <div class="signup-header">
+            <div id="signup-header">
                 <h1>Sign Up Today!</h1>
                 <form id="signup-form">
-                    <input type="text" name="newUsername" id="new-username-field" class="signup-form-field" placeholder="Username">
+                    <input type="text" name="newUsername" id="new-username-field" class="signup-form-field" placeholder="Email">
                     <input type="password" name="newPassword" id="new-password-field" class="signup-form-field" placeholder="Password">
-                    <input type="submit" value="Sign up" id="signup-form-submit" onclick="loginUser()">
+                    <input type="submit" value="Sign up" id="signup-form-submit" onclick="createUser()">
                 </form>
             </div>
 
-            <div class="login-header">
+            <div id="login-header">
                 <h1>Already a member? Login below
                 </h1
                 >
                 <form id="login-form">
-                    <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+                    <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Email">
                     <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-                    <input type="submit" value="Login" id="login-form-submit" onclick="createUser()">
+                    <input type="submit" value="Login" id="login-form-submit" onclick="loginUser()">
                 </form>
             </div>
             <div class="modal fade" id="msgModal" tabindex="-1">
@@ -79,7 +79,7 @@
                 </div>
               </div>
             </div>
-            <div class="logout">
+            <div id="logout">
               <button type="button" class="btn btn-secondary" onclick="logout()">
                 Logout
               </button>
