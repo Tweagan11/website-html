@@ -7,7 +7,7 @@ const { peerProxy } = require('./peerProxy.js');
 
 const authCookieName = 'token';
 
-const port = process.argv.length > 2 ? process.argv[2] : 4000;
+const port = process.argv.length > 2 ? process.argv[2] : 5000;
 
 app.use(express.json());
 
@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 app.use(express.static('public'));
 
-var apiRouter = express.Router();
+const apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
 apiRouter.post(`/auth/create`, async(req, res) => {
@@ -33,6 +33,14 @@ apiRouter.post(`/auth/create`, async(req, res) => {
 });
 
 apiRouter.post('/auth/login', async(req, res) => {
+    const admin = await DB.getAdmin(req.body.email);
+    if(admin){
+        if (await bcrypt.compare(req.body.password, admin.password)) {
+            setAuthCookie(res, admin.token);
+            res.send({ id: admin._id });
+            return;
+        }
+    }
     const user = await DB.getUser(req.body.email);
     if(user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
@@ -63,7 +71,7 @@ const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
 secureApiRouter.use(async (req, res, next) => {
-    authToken = req.cookies[authCookieName];
+    const authToken = req.cookies[authCookieName];
     const user = await DB.getUserByToken(authToken);
     if (user) {
       next();
@@ -71,6 +79,10 @@ secureApiRouter.use(async (req, res, next) => {
       res.status(401).send({ msg: 'Unauthorized' });
     }
   });
+
+app.use(function (err, req, res, next) {
+    res.status(500).send({ type: err.name, message: err.message });
+});
 
 app.use((_req, res) => {
  res.sendFile('index.html', { root: 'public' });

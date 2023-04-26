@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
 const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 
@@ -12,9 +12,25 @@ if (!userName) {
 
 const url = `mongodb+srv://${userName}:${password}@${hostname}`;
 
-const client = new MongoClient(url);
+const client = new MongoClient(url, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  });
+
+async function run() {
+    await client.connect();
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+}
+
+run();
+
 const userCollection = client.db('tht').collection('user');
 const adminCollection = client.db('tht').collection('admin');
+
 
 function getUser(email) {
     const user = userCollection.findOne({ email: email });
@@ -42,6 +58,7 @@ async function createUser(email, password) {
 }
 
 async function createAdmin(email, password) {
+    await run();
     const passwordHash = await bcrypt.hash(password, 10);
 
     const admin = {

@@ -1,8 +1,10 @@
+// const { response } = require("express");
+
 (async () => {
     let online = false;
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('userName');
     if (username) {
-        const nameEl = document.querySelector('#login-form');
+        const nameEl = document.getElementById('login-form');
         nameEl.value = username;
         const user = await getUser(nameEl.value);
         online = user?.online;
@@ -26,36 +28,30 @@ async function loginUser() {
 }
   
 async function createUser() {
-    loginOrCreate(`/api/auth/create`);
+   loginOrCreate('/api/auth/create');
 }
   
-async function loginOrCreate(endpoint) {
-    const loginForm = document.getElementById("login-form");
-    const username = loginForm.username.value;
-    const password = loginForm.password.value;
-    if (!username) {
-        const signupForm = document.getElementById("signup-form");
-        username = signupForm.username.value;
-        password = signupForm.password.value;
-    }
-    const response = await fetch(endpoint, {
-      method: 'post',
-      body: JSON.stringify({ email: username, password: password }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
-    const body = await response.json();
-  
-    if (response?.status === 200) {
-      localStorage.setItem('username', username);
-      window.location.href = 'index.html';
-    } else {
-      const modalEl = document.querySelector('#msgModal');
-      modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
-      const msgModal = new bootstrap.Modal(modalEl, {});
-      msgModal.show();
-    }
+async function loginOrCreate(endpoint,req,res) {
+  const userName = document.querySelector('#userName')?.value;
+  const password = document.querySelector('#userPassword')?.value;
+  const response = await fetch(endpoint, {
+    method: 'post',
+    body: JSON.stringify({ email: userName, password: password }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  });
+  const body = await response.json();
+
+  if (response?.status === 200) {
+    localStorage.setItem('userName', userName);
+    window.location.href = 'play.html';
+  } else {
+    const modalEl = document.querySelector('#msgModal');
+    modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
+    const msgModal = new bootstrap.Modal(modalEl, {});
+    msgModal.show();
+  }
 }
 
 function logout() {
