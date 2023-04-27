@@ -28,3 +28,7 @@ DOM
 Lots of initializing and installing packages with npm and node.js! Express, mongodb and uuid are all pretty standard towards making a website. pm2 also helps with server management and daemons running in the background
 
 mongodb is great paired with Atlas Mongo. Be sure to use credentials that are stored on your environment (either through ssh or through the system variables) and not on the acutal git repository. That allows hackers to come in and steal everything you hold dearly and love.
+
+Patience is key when adding in new packages :)
+
+Websocket didn't have a ton of functionality in my website, but I still got some good practice in with Simon! 
