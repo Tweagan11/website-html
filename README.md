@@ -29,6 +29,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+<<<<<<< HEAD
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
@@ -68,3 +69,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+mongodb is great paired with Atlas Mongo. Be sure to use credentials that are stored on your environment (either through ssh or through the system variables) and not on the acutal git repository. That allows hackers to come in and steal everything you hold dearly and love.
+
+Patience is key when adding in new packages :)
+
+Websocket didn't have a ton of functionality in my website, but I still got some good practice in with Simon! 
+>>>>>>> ded681b2a59a1e4e41cfd02045c1e98f80dac914
