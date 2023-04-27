@@ -13,15 +13,17 @@ if [[ -z "$key" || -z "$hostname" || -z "$service" ]]; then
     exit 1
 fi
 
-printf "\n----> Deploying $service to $hostname with $key\n"
+printf "\n----> Deploying React bundle $service to $hostname with $key\n"
 
 # Step 1
 printf "\n----> Build the distribution package\n"
 rm -rf dist
 mkdir dist
-cp -r public dist
-cp *.js dist
-cp package* dist
+npm install # make sure react-scripts are installed so that we can bundle
+npm run build # build the React front end
+cp -rf build dist/public # move the React front end to the target distribution
+cp service/*.js dist # move the back end service to the target distribution
+cp service/*.json dist
 
 # Step 2
 printf "\n----> Clearing out previous distribution on the target\n"
@@ -37,6 +39,7 @@ scp -r -i "$key" dist/* ubuntu@$hostname:services/$service
 # Step 4
 printf "\n----> Deploy the service on the target\n"
 ssh -i "$key" ubuntu@$hostname << ENDSSH
+bash -i
 cd services/${service}
 npm install
 pm2 restart ${service}

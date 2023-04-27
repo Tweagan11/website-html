@@ -1,7 +1,7 @@
 import slide1 from "./speak-bg.jpg"
 import slide2 from "./camping-bg.jpg"
 import slide3 from "./service.jpg"
-import { Carousel } from "./carousel.js"
+import "./carousel.js"
 
 
 export default function Events() {
