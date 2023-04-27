@@ -33,14 +33,6 @@ apiRouter.post(`/auth/create`, async(req, res) => {
 });
 
 apiRouter.post('/auth/login', async(req, res) => {
-    const admin = await DB.getAdmin(req.body.email);
-    if(admin){
-        if (await bcrypt.compare(req.body.password, admin.password)) {
-            setAuthCookie(res, admin.token);
-            res.send({ id: admin._id });
-            return;
-        }
-    }
     const user = await DB.getUser(req.body.email);
     if(user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
@@ -53,6 +45,7 @@ apiRouter.post('/auth/login', async(req, res) => {
 })
 
 apiRouter.delete('/auth/logout', (_req, res) => {
+    console.log('test');
     res.clearCookie(authCookieName);
     res.status(204).end;
 });
@@ -61,11 +54,14 @@ apiRouter.get('/user/:email', async (req, res) => {
     const user = await DB.getUser(req.params.email);
     if (user) {
         const token = req?.cookies.token;
-        res.send({ email: user.email, authenticated: token === user.token });
+        res.send({ email: user.email,  admin: user.admin, authenticated: token === user.token, });
         return;
-    }
+    } 
     res.status(404).send({ msg: 'Unknown' });
 });
+
+
+
 
 const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
@@ -79,6 +75,17 @@ secureApiRouter.use(async (req, res, next) => {
       res.status(401).send({ msg: 'Unauthorized' });
     }
   });
+
+secureApiRouter.get('/products', async (req, res) => {
+    const products = await DB.getProducts();
+    res.send(products);
+});
+
+secureApiRouter.post('/products', async (req, res) => {
+    await DB.addProduct(req.body);
+    const products = await DB.getProducts();
+    res.send(products);
+})
 
 app.use(function (err, req, res, next) {
     res.status(500).send({ type: err.name, message: err.message });

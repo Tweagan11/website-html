@@ -4,18 +4,25 @@
     let online = false;
     const username = localStorage.getItem('userName');
     if (username) {
-        const nameEl = document.getElementById('login-form');
+        const nameEl = document.querySelector('#login-icon');
         nameEl.value = username;
         const user = await getUser(nameEl.value);
-        online = user?.online;
+        online = true;
+        admin = user.admin;
+        console.log(admin);
+    }
+
+    if (admin) {
+      document.querySelector('#login-icon').href = "admin.html";
     }
 
     if (online) {
-        document.querySelector('#login-icon').href = "admin.html";
+        
         setDisplay('signup-header', 'none');
         setDisplay('login-header', 'none');
         setDisplay('logout', 'block');
-        window.location.href = 'admin.html';
+        setDisplay('signbox', 'none')
+        // window.location.href = 'admin.html';
     } else {
         setDisplay('signup-form', 'block');
         setDisplay('login-form', 'block');
@@ -31,9 +38,21 @@ async function createUser() {
    loginOrCreate('/api/auth/create');
 }
   
-async function loginOrCreate(endpoint,req,res) {
+async function loginOrCreate(endpoint) {
   const userName = document.querySelector('#userName')?.value;
   const password = document.querySelector('#userPassword')?.value;
+  if(!userName) {
+    const modalEl = document.querySelector('#msgModal');
+    modalEl.querySelector('.modal-body').textContent = `⚠ Error: Please Enter Username`;
+    const msgModal = new bootstrap.Modal(modalEl, {});
+    msgModal.show();
+  }
+  if(!password) {
+    const modalEl = document.querySelector('#msgModal');
+    modalEl.querySelector('.modal-body').textContent = `⚠ Error: Please Enter Password`;
+    const msgModal = new bootstrap.Modal(modalEl, {});
+    msgModal.show();
+  }
   const response = await fetch(endpoint, {
     method: 'post',
     body: JSON.stringify({ email: userName, password: password }),
@@ -45,7 +64,7 @@ async function loginOrCreate(endpoint,req,res) {
 
   if (response?.status === 200) {
     localStorage.setItem('userName', userName);
-    window.location.href = 'play.html';
+    window.location.href = 'index.html';
   } else {
     const modalEl = document.querySelector('#msgModal');
     modalEl.querySelector('.modal-body').textContent = `⚠ Error: ${body.msg}`;
@@ -54,24 +73,34 @@ async function loginOrCreate(endpoint,req,res) {
   }
 }
 
-function logout() {
+
+
+function logoutUser() {
+  console.log('test1');
     fetch(`/api/auth/logout`, {
       method: 'delete',
-    }).then(() => (window.location.href = 'index.html'));
+    });
+    goBack();
 }
 
+
 function setDisplay(controlId, display) {
-    const playControlEl = document.querySelector(`#${controlId}`);
-    if (playControlEl) {
-      playControlEl.style.display = display;
+    const navEl = document.querySelector(`#${controlId}`);
+    if (navEl) {
+      navEl.style.display = display;
     }
 }
 
 async function getUser(email) {
-    const response = await fetch(`/api/user/${email}`);
+    const response = await fetch(`/api/admin/${email}`);
     if (response.status === 200) {
       return response.json();
     }
   
     return null;
+  }
+
+  function goBack() {
+    localStorage.clear();
+    window.location.href = 'index.html';
   }

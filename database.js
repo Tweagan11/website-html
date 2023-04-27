@@ -29,7 +29,7 @@ async function run() {
 run();
 
 const userCollection = client.db('tht').collection('user');
-const adminCollection = client.db('tht').collection('admin');
+const productCollection = client.db('tht').collection('products');
 
 
 function getUser(email) {
@@ -44,12 +44,13 @@ function getUserByToken(token) {
 
 async function createUser(email, password) {
     const passwordHash = await bcrypt.hash(password, 10);
+    const adminStatus = false;
   
     const user = {
       email: email,
       password: passwordHash,
-      online: true,
       token: uuid.v4(),
+      admin: adminStatus,
     };
 
     await userCollection.insertOne(user);
@@ -57,35 +58,24 @@ async function createUser(email, password) {
     return user;
 }
 
-async function createAdmin(email, password) {
-    await run();
-    const passwordHash = await bcrypt.hash(password, 10);
+function addProduct(product) {
+    productCollection.insertOne(product);
+}
 
-    const admin = {
-        email: email,
-        password: passwordHash,
-        online: true,
-        admin: true,
-        token: uuid.v4(),
+function getProducts() {
+    const query = {};
+    const options = {
+        sort: { id: -1},
+        limit: 10,
     };
-    await adminCollection.insertOne(admin);
-
-    return admin;
-}
-
-function getAdmin(email) {
-    return adminCollection.findOne({ email: email });
-}
-
-function getadminByToken(token) {
-    return adminCollection.findOne({ token: token });
+    const cursor = productCollection.find(query, options);
+    return cursor.toArray();
 }
 
 module.exports = {
     getUser,
     getUserByToken,
     createUser,
-    getAdmin,
-    getadminByToken,
-    createAdmin,
+    getProducts,
+    addProduct,
 };
